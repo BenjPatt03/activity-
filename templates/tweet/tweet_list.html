@@ -1,0 +1,19 @@
+
+{% block content %}
+  <h2>Post a Tweet</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Tweet</button>
+  </form>
+  <hr>
+  <h2>Tweets</h2>
+  <ul>
+    {% for tweet in tweets %}
+      <li><strong>{{ tweet.user.username }}</strong>: {{ tweet.content }}<br><small>Created at: {{ tweet.created_at }}</small></li>
+    {% empty %}
+      <li>No tweets yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
